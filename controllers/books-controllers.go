@@ -16,6 +16,7 @@ func (h handler) ListBooks(ctx *gin.Context) {
 
 	if result := h.DB.Find(&books); result.Error != nil {
 		ctx.AbortWithError(http.StatusNotFound, result.Error)
+		return
 	}
 
 	ctx.JSON(http.StatusOK, &books)
